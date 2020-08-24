@@ -1,4 +1,5 @@
 using Library.API.Context;
+using Library.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,9 +23,11 @@ namespace Library.API
         {
             services.AddControllers();
 
-            services.AddDbContext<LibraryContext>(options => options.UseSqlite(Configuration.GetConnectionString("LibraryContext")));
+            services.AddDbContext<LibraryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LibraryContext")));
 
             services.AddScoped<LibraryContext>();
+
+            services.AddScoped<BooksService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
