@@ -4,8 +4,8 @@ namespace Library.API.Entities
 {
     public class Book : EntityBase
     {
-        public string Name { get; set; }
-        public string ISBN { get; set; }
+        public string Name { get; private set; }
+        public string ISBN { get; private set; }
 
         public static Book CreateFrom(BookToCreate bookToCreate)
         {

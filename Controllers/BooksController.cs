@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/books")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -32,7 +32,12 @@ namespace Library.API.Controllers
         [Route("{id}")]
         public IActionResult Get(string id)
         {
-            return Ok(booksService.GetById(id));
+            var book = booksService.GetById(id);
+
+            if (book == null)
+                return NotFound();
+
+            return Ok(book);
         }
 
         [HttpGet]
