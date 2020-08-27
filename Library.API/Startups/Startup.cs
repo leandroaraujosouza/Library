@@ -1,9 +1,6 @@
-using Library.API.Context;
-using Library.API.Persistence;
-using Library.API.Services;
+using Library.API.Startups;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,13 +21,7 @@ namespace Library.API
         {
             services.AddControllers();
 
-            services.AddDbContext<LibraryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LibraryContext")));
-
-            services.AddScoped<ILibraryContext, LibraryContext>();
-
-            services.AddScoped<IBooksService, BooksService>();
-
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            StartupServices.Configure(services, Configuration);
 
         }
 
