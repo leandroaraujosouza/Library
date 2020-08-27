@@ -1,0 +1,36 @@
+<form class="book-form">
+  <mat-form-field class="book-full-width">
+    <mat-label>Título</mat-label>
+    <input matInput [formControl]="title" />
+  </mat-form-field>
+
+  <mat-form-field class="book-full-width">
+    <mat-label>Autor</mat-label>
+    <input matInput [formControl]="author" />
+  </mat-form-field>
+
+  <mat-form-field class="book-full-width">
+    <mat-label>ISBN</mat-label>
+    <input matInput [formControl]="isbn" />
+  </mat-form-field>
+
+  <mat-form-field color="accent" appearance="fill" class="book-full-width">
+    <mat-label>Data de lançamento</mat-label>
+    <input matInput [matDatepicker]="releaseDate" />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="releaseDate"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #releaseDate></mat-datepicker>
+  </mat-form-field>
+
+  <button
+    mat-button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="false"
+  >
+    Salvar
+  </button>
+</form>
