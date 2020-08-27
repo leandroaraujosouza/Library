@@ -43,7 +43,7 @@ namespace Library.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(booksService.Get());
+            return Ok(booksService.GetAll());
         }
 
         [HttpDelete]

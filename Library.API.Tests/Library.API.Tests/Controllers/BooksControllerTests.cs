@@ -29,5 +29,33 @@ namespace Library.API.Tests.Controllers
 
             result.Should().BeOfType<OkObjectResult>();
         }
+
+        [TestMethod]
+        public void Edit_ExistingBook_ShouldReturnOkObjectResult()
+        {
+            var book = new BookToEdit() { ISBN = "ABC123", Name = "Clean Code" };
+
+            var result = _controller.Edit("1", book);
+
+            result.Should().BeOfType<OkObjectResult>();
+        }
+
+        [TestMethod]
+        public void DeleteABook_ShouldReturnOkObjectResult()
+        {
+            var bookId = "1";
+
+            var result = _controller.Delete(bookId);
+
+            result.Should().BeOfType<OkObjectResult>();
+        }
+
+        [TestMethod]
+        public void GetAllBooks_ShouldReturnOkObjectResult()
+        {
+            var result = _controller.Get();
+
+            result.Should().BeOfType<OkObjectResult>();
+        }
     }
 }

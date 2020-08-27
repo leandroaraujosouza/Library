@@ -2,7 +2,7 @@
 
 namespace Library.API.Entities
 {
-    public class EntityBase
+    public class EntityBase : IEntityBase
     {
         public string Id { get; set; }
         public string CreatedAt { get; set; }

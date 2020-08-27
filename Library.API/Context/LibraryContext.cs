@@ -9,7 +9,13 @@ namespace Library.API.Context
         public LibraryContext([NotNull] DbContextOptions options) : base(options)
         {
         }
-
+        
         public DbSet<Book> Books { get; set; }
+
+        public DbSet<T> DbSet<T>() where T : class
+        {
+            return this.Set<T>();
+        }
+      
     }
 }
