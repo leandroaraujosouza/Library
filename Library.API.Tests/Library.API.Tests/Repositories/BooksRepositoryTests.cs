@@ -40,5 +40,17 @@ namespace Library.API.Tests.Repositories
 
             result.Should().HaveCount(2, "It has 2 books in the repository");
         }
+
+        [TestMethod]
+        public void GetBookById_AddABookToRepository_ShouldReturnTheBookAdded()
+        {
+            var book = new Book { Id = "1111111", ISBN = "ABC123" };
+
+            _mockBooks.SetSource(new[] { book });
+
+            var result = _repository.GetByID(book.Id);
+
+            result.Should().BeOfType<Book>();
+        }
     }
 }
