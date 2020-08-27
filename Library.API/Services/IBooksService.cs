@@ -9,7 +9,7 @@ namespace Library.API.Services
         Book Add(BookToCreate bookToCreate);
         Book Delete(string id);
         BookToReturn Edit(string id, BookToEdit bookToEdit);
-        IEnumerable<BookToReturn> Get();
+        IEnumerable<BookToReturn> GetAll();
         Book GetById(string id);
     }
 }

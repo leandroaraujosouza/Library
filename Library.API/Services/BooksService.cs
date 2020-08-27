@@ -54,7 +54,7 @@ namespace Library.API.Services
             return unitOfWork.BooksRepository.GetByID(id);
         }
 
-        public IEnumerable<BookToReturn> Get()
+        public IEnumerable<BookToReturn> GetAll()
         {
             var booksToReturn = unitOfWork
                 .BooksRepository
