@@ -21,6 +21,11 @@ namespace Library.API.Persistence.Repositories
             dbSet.Add(entity);
         }
 
+        public void InsertRange(IEnumerable<TEntity> TEntityList)
+        {
+            dbSet.AddRange(TEntityList);
+        }
+
         public virtual TEntity GetByID(object id)
         {
             return dbSet.Find(id);

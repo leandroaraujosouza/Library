@@ -10,6 +10,8 @@ namespace Library.API.Persistence.Repositories
         void Delete(TEntity entityToDelete);
         TEntity GetByID(object id);
         void Insert(TEntity entity);
+        void InsertRange(IEnumerable<TEntity> listOfBooks);
+
         void Update(TEntity entityToUpdate);
         void UpdateRange(IEnumerable<TEntity> entities);
         IQueryable<TEntity> GetAllAsQueryable();

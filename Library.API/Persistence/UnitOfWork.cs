@@ -14,7 +14,7 @@ namespace Library.API.Persistence
             this.libraryContext = libraryContext;
         }
 
-        public IRepository<Book> BooksRepository => books ?? (books = new BaseRepository<Book>(libraryContext));
+        public IRepository<Book> BooksRepository => books ??= new BaseRepository<Book>(libraryContext);
 
         public void Complete()
         {

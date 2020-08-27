@@ -1,11 +1,16 @@
 ﻿using FluentAssertions;
 using Library.API.Context;
 using Library.API.Entities;
+using Library.API.Models;
+using Library.API.Persistence;
 using Library.API.Persistence.Repositories;
+using Library.API.Services;
 using Library.API.Tests.Extensions;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Linq;
 
 namespace Library.API.Tests.Repositories
 {
@@ -30,27 +35,87 @@ namespace Library.API.Tests.Repositories
         }
 
         [TestMethod]
-        public void GetAllBooks_RepositoryHas2Books_ShouldReturn2Books()
+        public void GetAllBooks_Add2BooksToTheRepository_ShouldReturn2Books()
         {
-            var books = new Book[] { new Book {Id = "1111111", ISBN = "ABC123" }, new Book { Id = "222222", ISBN = "DEF123" } };
+            // In-memory database only exists while the connection is open
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
 
-            _mockBooks.SetSource(books);
+            try
+            {
+                var options = new DbContextOptionsBuilder<LibraryContext>()
+                    .UseSqlite(connection)
+                    .Options;
 
-            var result = _repository.GetAllAsQueryable();
+                // Create the schema in the database
+                using (var context = new LibraryContext(options))
+                {
+                    context.Database.EnsureCreated();
+                }
 
-            result.Should().HaveCount(2, "It has 2 books in the repository");
+                // Run the test against one instance of the context
+                using (var context = new LibraryContext(options))
+                {
+                    var mockUoW = new Mock<UnitOfWork>(context);
+                    var service = new Mock<BooksService>(mockUoW.Object);
+                    var books = new BookToCreate[] { new BookToCreate { Name = "Livro 1", ISBN = "ABC123" }, new BookToCreate { Name = "Livro 2", ISBN = "DEF123" } };
+
+                    service.Object.AddRange(books);
+                    context.SaveChanges();
+                }
+
+                // Use a separate instance of the context to verify correct data was saved to database
+                using (var context = new LibraryContext(options))
+                {
+                    context.Books.Should().HaveCount(2, "2 books was added to the repository");
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         [TestMethod]
         public void GetBookById_AddABookToRepository_ShouldReturnTheBookAdded()
         {
-            var book = new Book { Id = "1111111", ISBN = "ABC123" };
+            // In-memory database only exists while the connection is open
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
 
-            _mockBooks.SetSource(new[] { book });
+            try
+            {
+                var options = new DbContextOptionsBuilder<LibraryContext>()
+                    .UseSqlite(connection)
+                    .Options;
 
-            var result = _repository.GetByID(book.Id);
+                // Create the schema in the database
+                using (var context = new LibraryContext(options))
+                {
+                    context.Database.EnsureCreated();
+                }
 
-            result.Should().BeOfType<Book>();
+                // Run the test against one instance of the context
+                using (var context = new LibraryContext(options))
+                {
+                    var mockUoW = new Mock<UnitOfWork>(context);
+                    var service = new Mock<BooksService>(mockUoW.Object);
+                    service.Object.Add(new Models.BookToCreate() { Name = "Livro do ID", ISBN = "ABC123456" });
+                    context.SaveChanges();
+                }
+
+                // Use a separate instance of the context to verify correct data was saved to database
+                using (var context = new LibraryContext(options))
+                {
+                    
+                    //Assert
+                    context.Books.Count().Should().Be(1);
+                }
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

@@ -22,9 +22,20 @@ namespace Library.API.Services
             unitOfWork.BooksRepository.Insert(book);
 
             unitOfWork.Complete();
-
             return book;
         }
+
+        public IEnumerable<Book> AddRange(IEnumerable<BookToCreate> booksToCreate)
+        {
+            var listOfBooks = booksToCreate.Select(x => { return Book.CreateFrom(x); });
+
+            unitOfWork.BooksRepository.InsertRange(listOfBooks);
+
+            unitOfWork.Complete();
+
+            return listOfBooks;
+        }
+
         public BookToReturn Edit(string id, BookToEdit bookToEdit)
         {
             var book = unitOfWork.BooksRepository.GetByID(id);
