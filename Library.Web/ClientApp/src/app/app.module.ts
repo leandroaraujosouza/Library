@@ -31,7 +31,7 @@ import { HomeComponent } from "./home/home.component";
 import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { MenuComponent } from "./menu/menu.component";
-import { BookComponent } from "./book/book.component";
+import { BookComponent } from "./book/bookForm.component";
 
 @NgModule({
   declarations: [

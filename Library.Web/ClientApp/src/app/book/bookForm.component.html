@@ -1,22 +1,33 @@
-<form class="book-form">
+<h5>Cadastro de livro</h5>
+
+<form
+  class="book-form"
+  [formGroup]="bookForm"
+  (ngSubmit)="onSubmit(bookForm.value)"
+>
   <mat-form-field class="book-full-width">
     <mat-label>Título</mat-label>
-    <input matInput [formControl]="title" />
+    <input matInput formControlName="title" name="title" />
   </mat-form-field>
 
   <mat-form-field class="book-full-width">
     <mat-label>Autor</mat-label>
-    <input matInput [formControl]="author" />
+    <input matInput formControlName="author" name="author" />
   </mat-form-field>
 
   <mat-form-field class="book-full-width">
     <mat-label>ISBN</mat-label>
-    <input matInput [formControl]="isbn" />
+    <input matInput formControlName="isbn" name="isbn" />
   </mat-form-field>
 
   <mat-form-field color="accent" appearance="fill" class="book-full-width">
     <mat-label>Data de lançamento</mat-label>
-    <input matInput [matDatepicker]="releaseDate" />
+    <input
+      matInput
+      [matDatepicker]="releaseDate"
+      formControlName="releaseDate"
+      name="releaseDate"
+    />
     <mat-datepicker-toggle
       matSuffix
       [for]="releaseDate"

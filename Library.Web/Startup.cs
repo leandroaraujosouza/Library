@@ -1,6 +1,7 @@
+using Library.Web.Infrastructure;
+using Library.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,9 @@ namespace Library.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddScoped<LibraryClient>();
+            services.AddScoped<BooksService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
