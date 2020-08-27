@@ -5,9 +5,9 @@ namespace Library.API.Persistence.Repositories
 {
     public class BooksRepository : BaseRepository<Book>
     {
-        public BooksRepository(LibraryContext context) : base(context)
+        public BooksRepository(ILibraryContext context) : base(context)
         {
-
+            
         }
     }
 }

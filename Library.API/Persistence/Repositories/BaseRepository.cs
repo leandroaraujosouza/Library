@@ -8,13 +8,13 @@ namespace Library.API.Persistence.Repositories
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : EntityBase
     {
-        private readonly LibraryContext context;
+        private readonly ILibraryContext context;
         private readonly DbSet<TEntity> dbSet;
 
-        public BaseRepository(LibraryContext context)
+        public BaseRepository(ILibraryContext context)
         {
             this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            this.dbSet = context.DbSet<TEntity>();
         }
         public virtual void Insert(TEntity entity)
         {
