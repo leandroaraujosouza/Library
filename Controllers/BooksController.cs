@@ -8,9 +8,9 @@ namespace Library.API.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly BooksService booksService;
+        private readonly IBooksService booksService;
 
-        public BooksController(BooksService booksService)
+        public BooksController(IBooksService booksService)
         {
             this.booksService = booksService;
         }

@@ -1,52 +1,53 @@
-﻿using Library.API.Context;
-using Library.API.Entities;
+﻿using Library.API.Entities;
 using Library.API.Models;
+using Library.API.Persistence;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Library.API.Services
 {
-    public class BooksService
+    public class BooksService : IBooksService
     {
-        private readonly LibraryContext libraryContext;
+        private readonly IUnitOfWork unitOfWork;
 
-        public BooksService(LibraryContext libraryContext)
+        public BooksService(IUnitOfWork unitOfWork)
         {
-            this.libraryContext = libraryContext;
+            this.unitOfWork = unitOfWork;
         }
 
         public Book Add(BookToCreate bookToCreate)
         {
             var book = Book.CreateFrom(bookToCreate);
 
-            libraryContext.Books.Add(book);
+            unitOfWork.BooksRepository.Insert(book);
 
-            libraryContext.SaveChanges();
+            unitOfWork.Complete();
 
             return book;
         }
         public BookToReturn Edit(string id, BookToEdit bookToEdit)
         {
-            var book = libraryContext.Books.FirstOrDefault(x => x.Id == id);
+            var book = unitOfWork.BooksRepository.GetByID(id);
 
             if (book == null)
                 return null;
 
             book.UpdateFrom(bookToEdit);
 
-            libraryContext.SaveChanges();
+            unitOfWork.Complete();
 
             return book.ToBookToReturn();
         }
         public Book GetById(string id)
         {
-            return libraryContext.Books.FirstOrDefault(x => x.Id == id);
+            return unitOfWork.BooksRepository.GetByID(id);
         }
 
         public IEnumerable<BookToReturn> Get()
         {
-            var booksToReturn = libraryContext
-                .Books
+            var booksToReturn = unitOfWork
+                .BooksRepository
+                .GetAllAsQueryable()
                 .ToList();
 
             return booksToReturn
@@ -58,12 +59,9 @@ namespace Library.API.Services
 
         public Book Delete(string id)
         {
-            var bookToDelete = libraryContext.Books.FirstOrDefault(x => x.Id == id);
+            unitOfWork.BooksRepository.Delete(id);
 
-            libraryContext.Remove(bookToDelete);
-
-            libraryContext.SaveChanges();
-
+            unitOfWork.Complete();
             return null;
         }
     }

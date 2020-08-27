@@ -1,4 +1,5 @@
 using Library.API.Context;
+using Library.API.Persistence;
 using Library.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,9 +26,12 @@ namespace Library.API
 
             services.AddDbContext<LibraryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LibraryContext")));
 
-            services.AddScoped<LibraryContext>();
+            services.AddScoped<ILibraryContext, LibraryContext>();
 
-            services.AddScoped<BooksService>();
+            services.AddScoped<IBooksService, BooksService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
