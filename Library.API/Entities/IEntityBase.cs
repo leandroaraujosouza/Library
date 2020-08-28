@@ -1,9 +1,11 @@
-﻿namespace Library.API.Entities
+﻿using System;
+
+namespace Library.API.Entities
 {
     public interface IEntityBase
     {
-        string CreatedAt { get; set; }
         string Id { get; set; }
-        string UpdateAt { get; set; }
+        DateTimeOffset CreatedAt { get; set; }
+        DateTimeOffset? UpdateAt { get; set; }
     }
 }

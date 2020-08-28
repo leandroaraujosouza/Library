@@ -1,4 +1,4 @@
-﻿using Library.API.Models;
+﻿using Library.Client.Models;
 using System;
 
 namespace Library.API.Entities
@@ -8,19 +8,11 @@ namespace Library.API.Entities
         public string Name { get; set; }
         public string ISBN { get; set; }
 
-        public Book()
-        {
-            this.Id = GenerateID();
-        }
-        private string GenerateID()
-        {
-            return Guid.NewGuid().ToString("N").ToUpperInvariant();
-        }
         public static Book CreateFrom(BookToCreate bookToCreate)
         {
             var book = Create<Book>();
             book.ISBN = bookToCreate.ISBN;
-            book.Name = bookToCreate.Name;
+            book.Name = bookToCreate.Name;            
 
             return book;
         }

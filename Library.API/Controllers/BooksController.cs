@@ -1,5 +1,6 @@
-﻿using Library.API.Models;
+﻿using Library.API.Entities;
 using Library.API.Services;
+using Library.Client.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
@@ -16,16 +17,16 @@ namespace Library.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(BookToCreate bookToCreate)
+        public Book Add(BookToCreate bookToCreate)
         {
-            return Ok(booksService.Add(bookToCreate));
+            return booksService.Add(bookToCreate);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Edit(string id, BookToEdit bookToEdit)
+        public BookToReturn Edit(string id, BookToEdit bookToEdit)
         {
-            return Ok(booksService.Edit(id, bookToEdit));
+            return booksService.Edit(id, bookToEdit);
         }
 
         [HttpGet]

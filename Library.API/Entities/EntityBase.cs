@@ -5,12 +5,16 @@ namespace Library.API.Entities
     public class EntityBase : IEntityBase
     {
         public string Id { get; set; }
-        public string CreatedAt { get; set; }
-        public string UpdateAt { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? UpdateAt { get; set; }
 
         public static T Create<T>() where T : EntityBase
         {
-            return Activator.CreateInstance<T>();
+            var entity = Activator.CreateInstance<T>();
+            entity.Id = Guid.NewGuid().ToString();
+            entity.CreatedAt = DateTimeOffset.Now;
+            
+            return entity;
         }
     }
 }

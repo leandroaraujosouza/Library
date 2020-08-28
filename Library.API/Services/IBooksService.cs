@@ -1,5 +1,5 @@
 ﻿using Library.API.Entities;
-using Library.API.Models;
+using Library.Client.Models;
 using System.Collections.Generic;
 
 namespace Library.API.Services

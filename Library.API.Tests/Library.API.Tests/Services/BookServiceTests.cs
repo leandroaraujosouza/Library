@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using Library.API.Context;
-using Library.API.Models;
 using Library.API.Persistence;
 using Library.API.Services;
+using Library.Client.Models;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -54,7 +54,7 @@ namespace Library.API.Tests.Services
                     var bookRecovered = context.Books.FirstOrDefault();
                     var bookToEdit = new BookToEdit { ISBN = "123", Name = "Life is Beautiful" };
 
-                    var result = service.Object.Edit(bookRecovered.Id, bookToEdit);
+                    var result = service.Object.Edit(bookRecovered.Id.ToString(), bookToEdit);
 
                     result.ISBN.Should().Be(bookToEdit.ISBN);
                 }
@@ -105,7 +105,7 @@ namespace Library.API.Tests.Services
 
                     var bookRecovered = context.Books.FirstOrDefault();
 
-                    var result = service.Object.GetById(bookRecovered.Id);
+                    var result = service.Object.GetById(bookRecovered.Id.ToString());
 
                     result.Id.Should().Be(bookRecovered.Id);
                 }

@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using Library.API.Context;
 using Library.API.Entities;
-using Library.API.Models;
 using Library.API.Persistence;
 using Library.API.Persistence.Repositories;
 using Library.API.Services;
 using Library.API.Tests.Extensions;
+using Library.Client.Models;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -100,7 +100,7 @@ namespace Library.API.Tests.Repositories
                 {
                     var mockUoW = new Mock<UnitOfWork>(context);
                     var service = new Mock<BooksService>(mockUoW.Object);
-                    service.Object.Add(new Models.BookToCreate() { Name = "Livro do ID", ISBN = "ABC123456" });
+                    service.Object.Add(new BookToCreate() { Name = "Livro do ID", ISBN = "ABC123456" });
                     context.SaveChanges();
                 }
 

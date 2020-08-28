@@ -1,6 +1,6 @@
 ﻿using Library.API.Entities;
-using Library.API.Models;
 using Library.API.Persistence;
+using Library.Client.Models;
 using System.Collections.Generic;
 using System.Linq;
 

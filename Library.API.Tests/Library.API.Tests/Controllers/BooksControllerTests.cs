@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Library.API.Controllers;
-using Library.API.Models;
 using Library.API.Services;
+using Library.Client.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -27,7 +27,7 @@ namespace Library.API.Tests.Controllers
 
             var result = _controller.Add(book.Object);
 
-            result.Should().BeOfType<OkObjectResult>();
+            result.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace Library.API.Tests.Controllers
 
             var result = _controller.Edit("1", book);
 
-            result.Should().BeOfType<OkObjectResult>();
+            result.ISBN.Should().Be(book.ISBN);
         }
 
         [TestMethod]
