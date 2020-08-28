@@ -5,17 +5,14 @@
   <form
     class="book-form"
     [formGroup]="formGroup"
+    #form="ngForm"
     (ngSubmit)="onFormSubmit()"
     autocomplete="off"
   >
     <mat-form-field class="book-full-width">
       <mat-label>Título</mat-label>
-      <input matInput formControlName="name" name="name" />
-      <mat-error
-        *ngIf="
-          formGroup.invalid || (name.invalid && (name.dirty || name.touched))
-        "
-      >
+      <input matInput formControlName="name" #bookName />
+      <mat-error *ngIf="formGroup.controls.name.invalid">
         <span *ngIf="name.errors.required">O título é obrigatório.</span>
         <span *ngIf="name.errors.minlength">
           O título deve ter ao menos 2 caracteres.
@@ -26,12 +23,7 @@
     <mat-form-field class="book-full-width">
       <mat-label>Autor</mat-label>
       <input matInput formControlName="authorName" name="authorName" />
-      <mat-error
-        *ngIf="
-          formGroup.invalid ||
-          (authorName.invalid && (authorName.dirty || authorName.touched))
-        "
-      >
+      <mat-error *ngIf="formGroup.controls.authorName.invalid">
         <span *ngIf="authorName.errors.required">
           O nome do autor é obrigatório.
         </span>
@@ -41,11 +33,7 @@
     <mat-form-field class="book-full-width">
       <mat-label>ISBN</mat-label>
       <input matInput formControlName="isbn" name="isbn" />
-      <mat-error
-        *ngIf="
-          formGroup.invalid || (isbn.invalid && (isbn.dirty || isbn.touched))
-        "
-      >
+      <mat-error *ngIf="formGroup.controls.name.invalid">
         <span *ngIf="isbn.errors.required">O ISBN obrigatório.</span>
       </mat-error>
     </mat-form-field>

@@ -1,6 +1,12 @@
 import { BookFormService } from "./bookForm.service";
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterContentInit,
+} from "@angular/core";
+import { FormControl, FormGroup, Validators, NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-book",
@@ -8,12 +14,17 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./bookForm.component.css"],
   providers: [BookFormService],
 })
-export class BookComponent implements OnInit {
+export class BookComponent implements OnInit, AfterContentInit {
   formGroup: FormGroup;
   isValidFormSubmitted = null;
   book: any;
 
+  @ViewChild("bookName", { static: false }) bookName: ElementRef;
+  @ViewChild("form", { static: false }) private form: NgForm;
+
   constructor(private bookFormService: BookFormService) {}
+
+  ngAfterContentInit(): void {}
 
   onFormSubmit() {
     this.isValidFormSubmitted = false;
@@ -24,6 +35,8 @@ export class BookComponent implements OnInit {
     this.book = this.formGroup.value;
 
     this.bookFormService.add(this.book);
+
+    this.form.resetForm();
   }
 
   ngOnInit() {
