@@ -24,6 +24,7 @@ import {
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
 } from "@angular/material/core";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
@@ -54,6 +55,7 @@ import { BookComponent } from "./book/bookForm.component";
     MatFormFieldModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatSnackBarModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "new-book", component: BookComponent },

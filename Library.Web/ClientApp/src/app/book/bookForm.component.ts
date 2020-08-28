@@ -7,6 +7,7 @@ import {
   AfterContentInit,
 } from "@angular/core";
 import { FormControl, FormGroup, Validators, NgForm } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-book",
@@ -22,7 +23,10 @@ export class BookComponent implements OnInit, AfterContentInit {
   @ViewChild("bookName", { static: false }) bookName: ElementRef;
   @ViewChild("form", { static: false }) private form: NgForm;
 
-  constructor(private bookFormService: BookFormService) {}
+  constructor(
+    private bookFormService: BookFormService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngAfterContentInit(): void {}
 
@@ -37,6 +41,18 @@ export class BookComponent implements OnInit, AfterContentInit {
     this.bookFormService.add(this.book);
 
     this.form.resetForm();
+
+    this.displaySuccessMessage();
+  }
+
+  displaySuccessMessage() {
+    this._snackBar.open(
+      "Livro cadastrado com sucesso!!",
+      "Me leva pra home page!",
+      {
+        duration: 3000,
+      }
+    );
   }
 
   ngOnInit() {
