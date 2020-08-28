@@ -21,8 +21,8 @@ export class BookFormService {
 }
 
 interface Book {
-  title: string;
   author: string;
+  name: string;
   isbn: string;
   releaseDate: string;
 }

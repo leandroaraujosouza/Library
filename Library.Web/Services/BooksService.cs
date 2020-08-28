@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Library.Client.Models;
 using Library.Web.Infrastructure;
 using RestSharp;
 
@@ -13,13 +14,13 @@ namespace Library.Web.Services
             this.libraryClient = libraryClient;
         }
 
-        public async Task<object> Add(object BookToAdd)
+        public async Task<object> Add(BookToCreate bookToCreate)
         {
-            var request = new RestRequest("/api/Books") { Method = Method.POST, RequestFormat = DataFormat.Json };
+            var request = new RestRequest("/api/books") { Method = Method.POST, RequestFormat = DataFormat.Json };
 
-            request.AddJsonBody(BookToAdd);
+            request.AddJsonBody(bookToCreate);
 
-            var result = await libraryClient.ExecutePostAsync<object>(request);
+            var result = await libraryClient.ExecutePostAsync<BookToReturn>(request);
 
             return result.Data;
         }

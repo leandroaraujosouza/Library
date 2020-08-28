@@ -36,6 +36,7 @@ namespace Library.API.Entities
                 ISBN = this.ISBN,
                 Name = this.Name,
                 AuthorName = this.AuthorName,
+                ReleaseDate = this.ReleaseDate,
                 CreatedAt = this.CreatedAt,
                 UpdateAt = this.UpdateAt,
             };

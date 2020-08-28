@@ -10,8 +10,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class BookComponent implements OnInit {
   bookForm = new FormGroup({
-    title: new FormControl("", [Validators.required]),
-    author: new FormControl("", [Validators.required]),
+    authorName: new FormControl("", [Validators.required]),
+    name: new FormControl("", [Validators.required]),
     isbn: new FormControl("", [Validators.required]),
     releaseDate: new FormControl("", [Validators.required]),
   });
@@ -20,7 +20,7 @@ export class BookComponent implements OnInit {
 
   onSubmit(data) {
     console.log(data);
-    this.bookFormService.add({ ...data, releaseDate: data.ge });
+    this.bookFormService.add(data);
   }
 
   ngOnInit() {}

@@ -1,47 +1,49 @@
 <h5>Cadastro de livro</h5>
 
-<form
-  class="book-form"
-  [formGroup]="bookForm"
-  (ngSubmit)="onSubmit(bookForm.value)"
->
-  <mat-form-field class="book-full-width">
-    <mat-label>Título</mat-label>
-    <input matInput formControlName="title" name="title" />
-  </mat-form-field>
-
-  <mat-form-field class="book-full-width">
-    <mat-label>Autor</mat-label>
-    <input matInput formControlName="author" name="author" />
-  </mat-form-field>
-
-  <mat-form-field class="book-full-width">
-    <mat-label>ISBN</mat-label>
-    <input matInput formControlName="isbn" name="isbn" />
-  </mat-form-field>
-
-  <mat-form-field color="accent" appearance="fill" class="book-full-width">
-    <mat-label>Data de lançamento</mat-label>
-    <input
-      matInput
-      [matDatepicker]="releaseDate"
-      formControlName="releaseDate"
-      name="releaseDate"
-    />
-    <mat-datepicker-toggle
-      matSuffix
-      [for]="releaseDate"
-    ></mat-datepicker-toggle>
-    <mat-datepicker #releaseDate></mat-datepicker>
-  </mat-form-field>
-
-  <button
-    mat-button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="false"
+<div class="form-container">
+  <form
+    class="book-form"
+    [formGroup]="bookForm"
+    (ngSubmit)="onSubmit(bookForm.value)"
   >
-    Salvar
-  </button>
-</form>
+    <mat-form-field class="book-full-width">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="name" name="name" />
+    </mat-form-field>
+
+    <mat-form-field class="book-full-width">
+      <mat-label>Autor</mat-label>
+      <input matInput formControlName="authorName" name="authorName" />
+    </mat-form-field>
+
+    <mat-form-field class="book-full-width">
+      <mat-label>ISBN</mat-label>
+      <input matInput formControlName="isbn" name="isbn" />
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="fill" class="book-full-width">
+      <mat-label>Data de lançamento</mat-label>
+      <input
+        matInput
+        [matDatepicker]="releaseDate"
+        formControlName="releaseDate"
+        name="releaseDate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="releaseDate"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #releaseDate></mat-datepicker>
+    </mat-form-field>
+
+    <button
+      mat-button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="false"
+    >
+      Salvar
+    </button>
+  </form>
+</div>

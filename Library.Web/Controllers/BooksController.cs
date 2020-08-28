@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Library.Client.Models;
 using Library.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ namespace Library.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] object bookToAdd)
+        public async Task<IActionResult> Add([FromBody] BookToCreate bookToAdd)
         {
 
             return Ok(await booksService.Add(bookToAdd));
