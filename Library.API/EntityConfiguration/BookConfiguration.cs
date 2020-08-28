@@ -7,7 +7,6 @@ namespace Library.API.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(300);
         }
     }
 }

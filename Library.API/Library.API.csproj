@@ -17,5 +17,9 @@
     <ProjectReference Include="..\Library.Client.Models\Library.Client.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 
 </Project>

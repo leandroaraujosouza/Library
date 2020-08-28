@@ -22,17 +22,16 @@ namespace Library.API.Migrations
             modelBuilder.Entity("Library.API.Entities.Book", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(60)");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar")
-                        .HasMaxLength(200);
+                        .HasColumnType("varchar(200)");
 
                     b.Property<DateTimeOffset?>("UpdateAt")
                         .HasColumnType("datetimeoffset");

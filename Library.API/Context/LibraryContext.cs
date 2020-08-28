@@ -14,22 +14,24 @@ namespace Library.API.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ConfigureConventions(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new BookConfiguration());
 
+            base.OnModelCreating(modelBuilder);
+        }
+
+        private static void ConfigureConventions(ModelBuilder modelBuilder)
+        {
             var props = from e in modelBuilder.Model.GetEntityTypes()
                         from p in e.GetProperties()
-                        where p.Name == "Name"
-                           && p.PropertyInfo.PropertyType == typeof(string)
+                        where p.PropertyInfo.PropertyType == typeof(string)
                         select p;
 
             foreach (var p in props)
             {
-                p.SetColumnType("varchar");
-                p.SetMaxLength(200);
+                p.SetColumnType("varchar(200)");
             }
-
-            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Book> Books { get; set; }

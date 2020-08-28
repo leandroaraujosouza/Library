@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.API.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20200828143608_FixEntityBaseUpdatedAt")]
-    partial class FixEntityBaseUpdatedAt
+    [Migration("20200828164320_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,17 +24,16 @@ namespace Library.API.Migrations
             modelBuilder.Entity("Library.API.Entities.Book", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(60)");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar")
-                        .HasMaxLength(200);
+                        .HasColumnType("varchar(200)");
 
                     b.Property<DateTimeOffset?>("UpdateAt")
                         .HasColumnType("datetimeoffset");

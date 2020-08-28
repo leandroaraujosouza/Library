@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Library.API.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,11 +11,11 @@ namespace Library.API.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    CreatedAt = table.Column<string>(nullable: true),
-                    UpdateAt = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    ISBN = table.Column<string>(nullable: true)
+                    Id = table.Column<string>(type: "varchar(60)", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(nullable: false),
+                    UpdateAt = table.Column<DateTimeOffset>(nullable: true),
+                    Name = table.Column<string>(type: "varchar(200)", nullable: true),
+                    ISBN = table.Column<string>(type: "varchar(200)", nullable: true)
                 },
                 constraints: table =>
                 {
