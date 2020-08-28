@@ -4,23 +4,50 @@
   </div>
   <form
     class="book-form"
-    [formGroup]="bookForm"
-    (ngSubmit)="onSubmit(bookForm.value)"
+    [formGroup]="formGroup"
+    (ngSubmit)="onFormSubmit()"
     autocomplete="off"
   >
     <mat-form-field class="book-full-width">
       <mat-label>Título</mat-label>
       <input matInput formControlName="name" name="name" />
+      <mat-error
+        *ngIf="
+          formGroup.invalid || (name.invalid && (name.dirty || name.touched))
+        "
+      >
+        <span *ngIf="name.errors.required">O título é obrigatório.</span>
+        <span *ngIf="name.errors.minlength">
+          O título deve ter ao menos 2 caracteres.
+        </span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="book-full-width">
       <mat-label>Autor</mat-label>
       <input matInput formControlName="authorName" name="authorName" />
+      <mat-error
+        *ngIf="
+          formGroup.invalid ||
+          (authorName.invalid && (authorName.dirty || authorName.touched))
+        "
+      >
+        <span *ngIf="authorName.errors.required">
+          O nome do autor é obrigatório.
+        </span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="book-full-width">
       <mat-label>ISBN</mat-label>
       <input matInput formControlName="isbn" name="isbn" />
+      <mat-error
+        *ngIf="
+          formGroup.invalid || (isbn.invalid && (isbn.dirty || isbn.touched))
+        "
+      >
+        <span *ngIf="isbn.errors.required">O ISBN obrigatório.</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="fill" class="book-full-width">
@@ -40,7 +67,7 @@
 
     <button
       mat-button
-      mat-raised-button
+      mat-flat-button
       color="primary"
       type="submit"
       [disabled]="false"

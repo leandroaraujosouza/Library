@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 
 export class Book {
-  public title: string;
+  public name: string;
+  public authorName: string;
   public isbn: string;
+  public releaseDate: Date;
 
   constructor(title: string, isbn: string) {
-    this.title = title;
+    this.name = title;
     this.isbn = isbn;
   }
 }

@@ -23,6 +23,10 @@ h5 {
   width: 100%;
 }
 
+button {
+  background-color: #ff0000 !important;
+}
+
 .book-full-width {
   width: 100%;
 }
