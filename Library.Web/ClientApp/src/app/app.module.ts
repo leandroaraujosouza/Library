@@ -28,8 +28,6 @@ import {
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { CounterComponent } from "./counter/counter.component";
-import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { MenuComponent } from "./menu/menu.component";
 import { BookComponent } from "./book/bookForm.component";
 
@@ -38,8 +36,6 @@ import { BookComponent } from "./book/bookForm.component";
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     MatIcon,
     MenuComponent,
     BookComponent,
@@ -60,9 +56,7 @@ import { BookComponent } from "./book/bookForm.component";
     MatMomentDateModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
-      { path: "counter", component: CounterComponent },
       { path: "new-book", component: BookComponent },
-      { path: "fetch-data", component: FetchDataComponent },
     ]),
     NoopAnimationsModule,
   ],
