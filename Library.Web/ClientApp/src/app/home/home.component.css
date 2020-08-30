@@ -5,7 +5,7 @@ mat-grid-tile {
 .book {
   width: 90%;
   position: relative;
-  top: 45px;
+  top: 70px;
 }
 
 mat-grid-tile {
@@ -25,3 +25,12 @@ mat-grid-tile {
   font-size: small;
 }
 
+.actions {
+  width: fit-content;
+  position: relative;
+  top: -165px;
+  left: 196px;
+  display: flex;
+  flex-flow: column-reverse;
+  padding: 2px;
+}

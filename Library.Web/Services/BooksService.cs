@@ -34,5 +34,14 @@ namespace Library.Web.Services
 
             return result.Data;
         }
+
+        public async Task<object> Delete(string id)
+        {
+            var request = new RestRequest($"/api/books/{id}") { Method = Method.DELETE, RequestFormat = DataFormat.Json };
+
+            var result = await libraryClient.DeleteAsync<object>(request);
+
+            return result;
+        }
     }
 }

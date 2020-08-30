@@ -3,6 +3,19 @@
     ><div class="book item">
       <div class="book-title">{{ book.name }}</div>
       <div class="book-author">Autor: &nbsp;{{ book.authorName }}</div>
+
+      <div class="actions">
+        <button mat-button (click)="deleteBook(book.id)">
+          <mat-icon class="button" aria-hidden="false" aria-label="Delete icon"
+            >delete</mat-icon
+          >
+        </button>
+        <button mat-button>
+          <mat-icon class="button" aria-hidden="false" aria-label="Delete icon"
+            >edit</mat-icon
+          >
+        </button>
+      </div>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

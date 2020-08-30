@@ -31,4 +31,8 @@ export class HomeComponent implements OnInit {
       this.books = result;
     });
   }
+
+  deleteBook(id: string) {
+    this.bookService.delete(id);
+  }
 }

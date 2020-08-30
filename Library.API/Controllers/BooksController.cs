@@ -49,7 +49,7 @@ namespace Library.API.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete([FromRoute] string id)
         {
             return Ok(booksService.Delete(id));
         }

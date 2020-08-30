@@ -26,5 +26,11 @@ namespace Library.Web.Controllers
         {
             return Ok(await booksService.GetAll());
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(string id)
+        {
+            return Ok(await booksService.Delete(id));
+        }
     }
 }
