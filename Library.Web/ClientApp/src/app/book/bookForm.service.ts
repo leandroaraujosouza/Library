@@ -4,6 +4,7 @@ import { Injectable, Inject } from "@angular/core";
 @Injectable()
 export class BookFormService {
   bookAdded: Book;
+  books: Object;
 
   constructor(
     private http: HttpClient,
@@ -11,12 +12,16 @@ export class BookFormService {
   ) {}
 
   add(book: Book) {
-    this.http.post<Book>(this.baseUrl + "Books/Add", book).subscribe(
+    this.http.post<Book>(this.baseUrl + "books/add", book).subscribe(
       (result) => {
         this.bookAdded = result;
       },
       (error) => console.error(error)
     );
+  }
+
+  getAll() {
+    return this.http.get(this.baseUrl + "books/getall");
   }
 }
 

@@ -1,3 +1,4 @@
+import { BookFormService } from "./../book/bookForm.service";
 import { Component, OnInit } from "@angular/core";
 
 export class Book {
@@ -18,18 +19,16 @@ export class Book {
   selector: "app-home",
   styleUrls: ["home.component.css"],
   templateUrl: "home.component.html",
+  providers: [BookFormService],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private bookService: BookFormService) {}
 
-  public books: Array<Book> = [];
+  public books: any;
 
   ngOnInit(): void {
-    this.books.push(new Book("Book 1", "ABC123"));
-    this.books.push(new Book("Book 2", "ABC123"));
-    this.books.push(new Book("Book 3", "ABC123"));
-    this.books.push(new Book("Book 4", "ABC123"));
-    this.books.push(new Book("Book 5", "ABC123"));
-    this.books.push(new Book("Book 6", "ABC123"));
+    this.bookService.getAll().subscribe((result) => {
+      this.books = result;
+    });
   }
 }

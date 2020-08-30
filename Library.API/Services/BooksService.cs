@@ -59,6 +59,7 @@ namespace Library.API.Services
             var booksToReturn = unitOfWork
                 .BooksRepository
                 .GetAllAsQueryable()
+                .OrderBy(x => x.Name)
                 .ToList();
 
             return booksToReturn

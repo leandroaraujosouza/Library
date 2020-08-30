@@ -1,3 +1,27 @@
 mat-grid-tile {
   background: lightblue;
 }
+
+.book {
+  width: 90%;
+  position: relative;
+  top: 45px;
+}
+
+mat-grid-tile {
+  background: url(../../assets/logo3.png) center center;
+}
+
+.book .book-title {
+  padding: 7px;
+  font-weight: 500;
+  color: white;
+  font-size: large;
+}
+
+.book .book-author {
+  padding: 7px;
+  color: white;
+  font-size: small;
+}
+

@@ -18,8 +18,13 @@ namespace Library.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] BookToCreate bookToAdd)
         {
-
             return Ok(await booksService.Add(bookToAdd));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await booksService.GetAll());
         }
     }
 }
