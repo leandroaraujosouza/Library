@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { FormControl, FormGroup, Validators, NgForm } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Book } from "../home/home.component";
 
 @Component({
@@ -29,7 +29,8 @@ export class BookComponent implements OnInit, AfterContentInit {
   constructor(
     private bookService: BookService,
     private _snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.route.paramMap.subscribe((params) => {
       this.bookId = params.get("id");
@@ -48,7 +49,7 @@ export class BookComponent implements OnInit, AfterContentInit {
 
     if (this.bookId) {
       this.bookService.edit(this.bookId, this.book).subscribe((book) => {
-        this.displaySuccessMessage();
+        this.router.navigate(["/"]);
       });
     } else {
       this.bookService.add(this.book).subscribe((book) => {
