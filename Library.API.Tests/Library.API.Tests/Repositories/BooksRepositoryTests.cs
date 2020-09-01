@@ -58,7 +58,9 @@ namespace Library.API.Tests.Repositories
                 {
                     var mockUoW = new Mock<UnitOfWork>(context);
                     var service = new Mock<BooksService>(mockUoW.Object);
-                    var books = new BookToCreate[] { new BookToCreate { Name = "Livro 1", ISBN = "ABC123" }, new BookToCreate { Name = "Livro 2", ISBN = "DEF123" } };
+                    var books = new BookToCreate[] {
+                        new BookToCreate { Name = "Livro 1", ISBN = "ABC123" },
+                        new BookToCreate { Name = "Livro 2", ISBN = "DEF123" } };
 
                     service.Object.AddRange(books);
                     context.SaveChanges();
@@ -107,7 +109,7 @@ namespace Library.API.Tests.Repositories
                 // Use a separate instance of the context to verify correct data was saved to database
                 using (var context = new LibraryContext(options))
                 {
-                    
+
                     //Assert
                     context.Books.Count().Should().Be(1);
                 }
