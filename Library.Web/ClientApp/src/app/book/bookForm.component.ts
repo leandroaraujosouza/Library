@@ -24,7 +24,7 @@ export class BookComponent implements OnInit, AfterContentInit {
 
   @ViewChild("bookName", { static: false }) bookName: ElementRef;
   @ViewChild("form", { static: false }) private form: NgForm;
-  bookId: string;
+  public bookId: string;
 
   constructor(
     private bookService: BookService,

@@ -1,6 +1,7 @@
 <div class="form-container">
   <div class="form-title">
-    <h5>Cadastro de livro</h5>
+    <h5 *ngIf="bookId">Editando livro</h5>
+    <h5 *ngIf="!bookId">Cadastro de livro</h5>
   </div>
   <form
     class="book-form"
