@@ -27,10 +27,28 @@ namespace Library.Web.Services
             return result.Data;
         }
 
+        public async Task<object> Edit(string id, BookToEdit bookToEdit)
+        {
+            var request = new RestRequest($"/api/books/{id}") { Method = Method.PUT, RequestFormat = DataFormat.Json };
+            request.AddJsonBody(bookToEdit);
+
+            var result = await libraryClient.PutAsync<BookToReturn>(request);
+
+            return result;
+        }
+
         public async Task<List<object>> GetAll()
         {
             var request = new RestRequest("/api/books") { Method = Method.GET, RequestFormat = DataFormat.Json };
             var result = await libraryClient.ExecuteGetAsync<List<object>>(request);
+
+            return result.Data;
+        }
+
+        public async Task<object> Get(string id)
+        {
+            var request = new RestRequest($"/api/books/{id}") { Method = Method.GET, RequestFormat = DataFormat.Json };
+            var result = await libraryClient.ExecuteGetAsync<object>(request);
 
             return result.Data;
         }

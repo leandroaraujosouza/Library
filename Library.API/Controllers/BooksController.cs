@@ -24,14 +24,14 @@ namespace Library.API.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public BookToReturn Edit(string id, BookToEdit bookToEdit)
+        public BookToReturn Edit([FromRoute] string id, BookToEdit bookToEdit)
         {
             return booksService.Edit(id, bookToEdit);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Get(string id)
+        public IActionResult Get([FromRoute] string id)
         {
             var book = booksService.GetById(id);
 

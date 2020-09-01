@@ -11,7 +11,11 @@
           >
         </button>
         <button mat-button>
-          <mat-icon class="button" aria-hidden="false" aria-label="Delete icon"
+          <mat-icon
+            class="button"
+            [routerLink]="['/book/edit/', book.id]"
+            aria-hidden="false"
+            aria-label="Edit icon"
             >edit</mat-icon
           >
         </button>

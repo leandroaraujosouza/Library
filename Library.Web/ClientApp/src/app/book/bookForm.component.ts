@@ -9,6 +9,8 @@ import {
 } from "@angular/core";
 import { FormControl, FormGroup, Validators, NgForm } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute } from "@angular/router";
+import { Book } from "../home/home.component";
 
 @Component({
   selector: "app-book",
@@ -22,11 +24,17 @@ export class BookComponent implements OnInit, AfterContentInit {
 
   @ViewChild("bookName", { static: false }) bookName: ElementRef;
   @ViewChild("form", { static: false }) private form: NgForm;
+  bookId: string;
 
   constructor(
     private bookFormService: BookFormService,
-    private _snackBar: MatSnackBar
-  ) {}
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
+  ) {
+    this.route.paramMap.subscribe((params) => {
+      this.bookId = params.get("id");
+    });
+  }
 
   ngAfterContentInit(): void {}
 
@@ -38,11 +46,17 @@ export class BookComponent implements OnInit, AfterContentInit {
     this.isValidFormSubmitted = true;
     this.book = this.formGroup.value;
 
-    this.bookFormService.add(this.book);
+    if (this.bookId) {
+      this.bookFormService.edit(this.bookId, this.book).subscribe((book) => {
+        this.displaySuccessMessage();
+      });
+    } else {
+      this.bookFormService.add(this.book).subscribe((book) => {
+        this.displaySuccessMessage();
+      });
+    }
 
     this.form.resetForm();
-
-    this.displaySuccessMessage();
   }
 
   displaySuccessMessage() {
@@ -54,12 +68,22 @@ export class BookComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
+    //Init FORM
     this.formGroup = new FormGroup({
       name: new FormControl("", [Validators.required, Validators.minLength(2)]),
       authorName: new FormControl("", [Validators.required]),
       isbn: new FormControl("", [Validators.required]),
       releaseDate: new FormControl("", [Validators.required]),
     });
+
+    if (this.bookId) {
+      this.bookFormService.get(this.bookId).subscribe((book: Book) => {
+        this.name.setValue(book.name);
+        this.authorName.setValue(book.authorName);
+        this.isbn.setValue(book.isbn);
+        this.releaseDate.setValue(book.releaseDate);
+      });
+    }
   }
 
   get authorName() {

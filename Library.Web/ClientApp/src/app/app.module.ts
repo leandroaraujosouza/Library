@@ -65,7 +65,8 @@ import { BookCreatedSnackBarComponent } from "./book-created-snack-bar/book-crea
     MatDialogModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
-      { path: "new-book", component: BookComponent },
+      { path: "book/edit/:id", component: BookComponent },
+      { path: "book/new", component: BookComponent },
     ]),
     NoopAnimationsModule,
   ],

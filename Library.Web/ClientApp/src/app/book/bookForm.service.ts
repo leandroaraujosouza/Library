@@ -3,7 +3,6 @@ import { Injectable, Inject } from "@angular/core";
 
 @Injectable()
 export class BookFormService {
-  bookAdded: Book;
   books: Object;
 
   constructor(
@@ -12,16 +11,19 @@ export class BookFormService {
   ) {}
 
   add(book: Book) {
-    this.http.post<Book>(this.baseUrl + "books/add", book).subscribe(
-      (result) => {
-        this.bookAdded = result;
-      },
-      (error) => console.error(error)
-    );
+    return this.http.post<Book>(this.baseUrl + "books/add", book);
   }
 
-  delete(bookId: string) {
-    return this.http.delete(this.baseUrl + `books/delete?id=${bookId}`);
+  get(id: string) {
+    return this.http.get(this.baseUrl + `books/get?id=${id}`);
+  }
+
+  edit(id: string, book: any) {
+    return this.http.put(this.baseUrl + `books/edit?id=${id}`, book);
+  }
+
+  delete(id: string) {
+    return this.http.delete(this.baseUrl + `books/delete?id=${id}`);
   }
 
   getAll() {
