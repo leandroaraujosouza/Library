@@ -1,4 +1,4 @@
-import { BookService } from "./../book/bookForm.service";
+import { BookService } from "../book/book.service";
 import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import { DeleteConfirmationComponent } from "./delete-confirmation/delete-confirmation/delete-confirmation.component";
 import { MatDialog } from "@angular/material/dialog";

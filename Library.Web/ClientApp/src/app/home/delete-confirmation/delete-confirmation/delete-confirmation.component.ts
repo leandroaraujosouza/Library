@@ -1,5 +1,5 @@
 import { EventEmitter } from "events";
-import { BookService } from "./../../../book/bookForm.service";
+import { BookService } from "../../../book/book.service";
 import { Component, OnInit, Inject, Output } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 

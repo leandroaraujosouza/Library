@@ -1,5 +1,5 @@
 import { BookCreatedSnackBarComponent } from "./../book-created-snack-bar/book-created-snack-bar.component";
-import { BookService } from "./bookForm.service";
+import { BookService } from "./book.service";
 import {
   Component,
   OnInit,
