@@ -26,7 +26,7 @@ mat-grid-tile {
 }
 
 .actions {
-  width: fit-content;
+  width: 50px;
   position: relative;
   top: -165px;
   left: 196px;
