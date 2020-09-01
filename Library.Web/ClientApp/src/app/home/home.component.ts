@@ -1,5 +1,7 @@
 import { BookFormService } from "./../book/bookForm.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { DeleteConfirmationComponent } from "./delete-confirmation/delete-confirmation/delete-confirmation.component";
+import { MatDialog } from "@angular/material/dialog";
 
 export class Book {
   public name: string;
@@ -19,10 +21,11 @@ export class Book {
   selector: "app-home",
   styleUrls: ["home.component.css"],
   templateUrl: "home.component.html",
-  providers: [BookFormService],
 })
-export class HomeComponent implements OnInit {
-  constructor(private bookService: BookFormService) {}
+export class HomeComponent implements OnInit, OnDestroy {
+  @Input()
+  dialogRef: any;
+  constructor(private bookService: BookFormService, public dialog: MatDialog) {}
 
   public books: any;
 
@@ -32,7 +35,25 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  deleteBook(id: string) {
-    this.bookService.delete(id);
+  ngOnDestroy(): void {
+    if (this.dialogRef !== undefined)
+      this.dialogRef.afterClosed().unsubscribe();
+  }
+
+  onDelete(id: string) {
+    const index = this.books.findIndex((book) => book.id === id);
+    this.books.splice(index, 1);
+  }
+
+  openDeleteConfirmationDialog(id: string) {
+    this.dialogRef = this.dialog.open(DeleteConfirmationComponent, {
+      data: this.books.filter((book) => book.id == id)[0],
+    });
+
+    this.dialogRef.afterClosed().subscribe((id) => {
+      if (id) {
+        this.onDelete(id);
+      }
+    });
   }
 }

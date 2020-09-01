@@ -13,7 +13,6 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   selector: "app-book",
   templateUrl: "./bookForm.component.html",
   styleUrls: ["./bookForm.component.css"],
-  providers: [BookFormService],
 })
 export class BookComponent implements OnInit, AfterContentInit {
   formGroup: FormGroup;

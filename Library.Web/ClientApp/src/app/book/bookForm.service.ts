@@ -21,10 +21,7 @@ export class BookFormService {
   }
 
   delete(bookId: string) {
-    this.http.delete(this.baseUrl + `books/delete?id=${bookId}`).subscribe(
-      (result) => {},
-      (error) => console.log(error)
-    );
+    return this.http.delete(this.baseUrl + `books/delete?id=${bookId}`);
   }
 
   getAll() {

@@ -46,6 +46,11 @@
         formControlName="releaseDate"
         name="releaseDate"
       />
+      <mat-error *ngIf="formGroup.controls.releaseDate.invalid">
+        <span *ngIf="isbn.errors.required"
+          >A data de lançamento é obrigatória.</span
+        >
+      </mat-error>
       <mat-datepicker-toggle
         matSuffix
         [for]="releaseDate"

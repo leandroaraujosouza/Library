@@ -1,3 +1,4 @@
+import { BookFormService } from "./book/bookForm.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -13,6 +14,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatFormFieldModule, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
@@ -31,6 +33,7 @@ import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { MenuComponent } from "./menu/menu.component";
 import { BookComponent } from "./book/bookForm.component";
+import { DeleteConfirmationComponent } from "./home/delete-confirmation/delete-confirmation/delete-confirmation.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { BookComponent } from "./book/bookForm.component";
     MatIcon,
     MenuComponent,
     BookComponent,
+    DeleteConfirmationComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -56,6 +60,7 @@ import { BookComponent } from "./book/bookForm.component";
     MatDatepickerModule,
     MatMomentDateModule,
     MatSnackBarModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "new-book", component: BookComponent },
@@ -70,7 +75,9 @@ import { BookComponent } from "./book/bookForm.component";
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    BookFormService,
   ],
   bootstrap: [AppComponent],
+  entryComponents: [DeleteConfirmationComponent],
 })
 export class AppModule {}
