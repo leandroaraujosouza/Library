@@ -50,19 +50,25 @@ export class BookComponent implements OnInit, AfterContentInit {
     if (this.bookId) {
       this.bookService.edit(this.bookId, this.book).subscribe((book) => {
         this.router.navigate(["/"]);
+        this.displaySuccessEditionMessage();
       });
     } else {
       this.bookService.add(this.book).subscribe((book) => {
-        this.displaySuccessMessage();
+        this.displaySuccessCreationMessage();
       });
     }
 
     this.form.resetForm();
   }
 
-  displaySuccessMessage() {
+  displaySuccessEditionMessage() {
+    this._snackBar.open("Livro editado com sucesso!", null, {
+      duration: 3000,
+    });
+  }
+
+  displaySuccessCreationMessage() {
     this._snackBar.openFromComponent(BookCreatedSnackBarComponent, {
-      horizontalPosition: "start",
       panelClass: ["mat-elevation-z3"],
       duration: 3000,
     });
