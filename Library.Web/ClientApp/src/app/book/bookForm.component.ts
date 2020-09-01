@@ -1,3 +1,4 @@
+import { BookCreatedSnackBarComponent } from "./../book-created-snack-bar/book-created-snack-bar.component";
 import { BookFormService } from "./bookForm.service";
 import {
   Component,
@@ -45,13 +46,11 @@ export class BookComponent implements OnInit, AfterContentInit {
   }
 
   displaySuccessMessage() {
-    this._snackBar.open(
-      "Livro cadastrado com sucesso!!",
-      "Me leva pra home page!",
-      {
-        duration: 3000,
-      }
-    );
+    this._snackBar.openFromComponent(BookCreatedSnackBarComponent, {
+      horizontalPosition: "start",
+      panelClass: ["mat-elevation-z3"],
+      duration: 3000,
+    });
   }
 
   ngOnInit() {

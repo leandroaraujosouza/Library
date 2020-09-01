@@ -34,6 +34,7 @@ import { HomeComponent } from "./home/home.component";
 import { MenuComponent } from "./menu/menu.component";
 import { BookComponent } from "./book/bookForm.component";
 import { DeleteConfirmationComponent } from "./home/delete-confirmation/delete-confirmation/delete-confirmation.component";
+import { BookCreatedSnackBarComponent } from "./book-created-snack-bar/book-created-snack-bar.component";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DeleteConfirmationComponent } from "./home/delete-confirmation/delete-c
     MenuComponent,
     BookComponent,
     DeleteConfirmationComponent,
+    BookCreatedSnackBarComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -78,6 +80,6 @@ import { DeleteConfirmationComponent } from "./home/delete-confirmation/delete-c
     BookFormService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DeleteConfirmationComponent],
+  entryComponents: [DeleteConfirmationComponent, BookCreatedSnackBarComponent],
 })
 export class AppModule {}

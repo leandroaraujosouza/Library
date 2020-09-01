@@ -36,8 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.dialogRef !== undefined)
-      this.dialogRef.afterClosed().unsubscribe();
+    if (this.dialogRef !== undefined) this.dialogRef._afterClosed.unsubscribe();
   }
 
   onDelete(id: string) {
