@@ -1,4 +1,4 @@
-import { BookFormService } from "./../book/bookForm.service";
+import { BookService } from "./../book/bookForm.service";
 import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import { DeleteConfirmationComponent } from "./delete-confirmation/delete-confirmation/delete-confirmation.component";
 import { MatDialog } from "@angular/material/dialog";
@@ -25,7 +25,7 @@ export class Book {
 export class HomeComponent implements OnInit, OnDestroy {
   @Input()
   dialogRef: any;
-  constructor(private bookService: BookFormService, public dialog: MatDialog) {}
+  constructor(private bookService: BookService, public dialog: MatDialog) {}
 
   public books: any;
 

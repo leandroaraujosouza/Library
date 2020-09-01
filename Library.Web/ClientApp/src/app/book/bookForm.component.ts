@@ -1,5 +1,5 @@
 import { BookCreatedSnackBarComponent } from "./../book-created-snack-bar/book-created-snack-bar.component";
-import { BookFormService } from "./bookForm.service";
+import { BookService } from "./bookForm.service";
 import {
   Component,
   OnInit,
@@ -27,7 +27,7 @@ export class BookComponent implements OnInit, AfterContentInit {
   bookId: string;
 
   constructor(
-    private bookFormService: BookFormService,
+    private bookService: BookService,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {
@@ -47,11 +47,11 @@ export class BookComponent implements OnInit, AfterContentInit {
     this.book = this.formGroup.value;
 
     if (this.bookId) {
-      this.bookFormService.edit(this.bookId, this.book).subscribe((book) => {
+      this.bookService.edit(this.bookId, this.book).subscribe((book) => {
         this.displaySuccessMessage();
       });
     } else {
-      this.bookFormService.add(this.book).subscribe((book) => {
+      this.bookService.add(this.book).subscribe((book) => {
         this.displaySuccessMessage();
       });
     }
@@ -77,7 +77,7 @@ export class BookComponent implements OnInit, AfterContentInit {
     });
 
     if (this.bookId) {
-      this.bookFormService.get(this.bookId).subscribe((book: Book) => {
+      this.bookService.get(this.bookId).subscribe((book: Book) => {
         this.name.setValue(book.name);
         this.authorName.setValue(book.authorName);
         this.isbn.setValue(book.isbn);

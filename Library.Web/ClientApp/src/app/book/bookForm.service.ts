@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, Inject } from "@angular/core";
 
 @Injectable()
-export class BookFormService {
+export class BookService {
   books: Object;
 
   constructor(

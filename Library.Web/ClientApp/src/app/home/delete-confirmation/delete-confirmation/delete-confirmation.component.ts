@@ -1,5 +1,5 @@
 import { EventEmitter } from "events";
-import { BookFormService } from "./../../../book/bookForm.service";
+import { BookService } from "./../../../book/bookForm.service";
 import { Component, OnInit, Inject, Output } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
@@ -13,7 +13,7 @@ export class DeleteConfirmationComponent implements OnInit {
   public bookDeleted: EventEmitter = new EventEmitter();
   constructor(
     @Inject(MAT_DIALOG_DATA) public book: any,
-    private bookService: BookFormService,
+    private bookService: BookService,
     private dialogRef: MatDialogRef<DeleteConfirmationComponent>
   ) {}
 

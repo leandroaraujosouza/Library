@@ -1,4 +1,4 @@
-import { BookFormService } from "./book/bookForm.service";
+import { BookService } from "./book/bookForm.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -78,7 +78,7 @@ import { BookCreatedSnackBarComponent } from "./book-created-snack-bar/book-crea
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    BookFormService,
+    BookService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [DeleteConfirmationComponent, BookCreatedSnackBarComponent],
