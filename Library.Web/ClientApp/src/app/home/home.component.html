@@ -1,3 +1,7 @@
+<div *ngIf="books.length === 0">
+  Está tão vazio por aqui. Que tal começar criando um novo livro ?
+  <a [routerLink]="['/book/new']">Novo livro</a>
+</div>
 <mat-grid-list class="container" cols="4" rowHeight="2:1.5">
   <mat-grid-tile class="items" *ngFor="let book of books"
     ><div class="book item">
