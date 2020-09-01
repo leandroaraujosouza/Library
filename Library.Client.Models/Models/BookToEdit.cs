@@ -2,7 +2,7 @@
 
 namespace Library.Client.Models
 {
-    public class BookToCreate
+    public class BookToEdit
     {
         public string AuthorName { get; set; }
         public string Name { get; set; }

@@ -26,6 +26,7 @@ namespace Library.API.Entities
             this.ISBN = bookToEdit.ISBN;
             this.Name = bookToEdit.Name;
             this.AuthorName = bookToEdit.AuthorName;
+            this.ReleaseDate = bookToEdit.ReleaseDate;
         }
 
         public BookToReturn ToBookToReturn()
