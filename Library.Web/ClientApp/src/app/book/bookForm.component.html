@@ -42,20 +42,20 @@
       <mat-label>Data de lançamento</mat-label>
       <input
         matInput
-        [matDatepicker]="releaseDate"
+        [matDatepicker]="releaseDatePicker"
         formControlName="releaseDate"
         name="releaseDate"
       />
       <mat-error *ngIf="formGroup.controls.releaseDate.invalid">
-        <span *ngIf="isbn.errors.required"
+        <span *ngIf="releaseDate.errors.required"
           >A data de lançamento é obrigatória.</span
         >
       </mat-error>
       <mat-datepicker-toggle
         matSuffix
-        [for]="releaseDate"
+        [for]="releaseDatePicker"
       ></mat-datepicker-toggle>
-      <mat-datepicker #releaseDate></mat-datepicker>
+      <mat-datepicker #releaseDatePicker></mat-datepicker>
     </mat-form-field>
 
     <button
